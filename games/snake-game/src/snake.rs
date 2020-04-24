@@ -68,7 +68,7 @@ impl Snake {
       }
 
       //retrieve the position of the head block
-      let (mut head_x, mut head_y):(f64,f64) = (0.0,0.0) ;
+      let (head_x,head_y):(f64,f64);
       {
         let head_block = self.body.front().unwrap() ;
         head_x = head_block.x;
@@ -77,20 +77,20 @@ impl Snake {
 
       let new_block = match self.moving_direction {
         Direction::Up    => Block {
-            x: head_x - BLOCK_SIZE,
-            y: head_y
+            x: head_x ,
+            y: head_y - BLOCK_SIZE ,
         },
         Direction::Down  => Block {
-            x: head_x + BLOCK_SIZE,
-            y: head_y
+            x: head_x ,
+            y: head_y + BLOCK_SIZE,
          },
         Direction::Left  => Block { 
-            x: head_x,
-            y: head_y - BLOCK_SIZE
+            x: head_x - BLOCK_SIZE,
+            y: head_y ,
          },
         Direction::Right => Block {
-            x: head_x,
-            y: head_y + BLOCK_SIZE
+            x: head_x + BLOCK_SIZE,
+            y: head_y ,
          }
       };
       self.body.push_front(new_block);
