@@ -1,14 +1,14 @@
-
 use piston_window::Context;
 use piston_window::G2d;
 use piston_window::rectangle;
 use piston_window::types::Color;
 use std::collections::LinkedList;
 
+//use BLOCK_SIZE;
+
+
 const SNAKE_COLOR:Color = [0.74,0.76,0.78,1.0];
-
-const BLOCK_SIZE:f64 = 50.0;
-
+const BLOCK_SIZE: f64 = 50.0;
 
 pub enum Direction {
     Up,
@@ -21,7 +21,6 @@ struct Block {
     x: f64,
     y: f64
 }
-
 
 pub struct Snake {
     moving_direction:Direction,   
@@ -99,3 +98,4 @@ impl Snake {
     }
 
 }
+
