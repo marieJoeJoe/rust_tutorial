@@ -20,7 +20,7 @@ void DrawTriangle(void)
 {
 
   static int angle;
-
+  static float pos = 0.0;
   XGetWindowAttributes(dpy, win, &winattr);
   glViewport(0,0,winattr.width,winattr.height); 
 
@@ -29,7 +29,10 @@ void DrawTriangle(void)
   glColor3f(1.0f, 0.0f, 1.0f);//triangle color RGB
 
   glPushMatrix();
-  glRotatef(angle, 0.5, 0.5, 0.0);// axis X,Y,Z
+  glRotatef(angle, 0.5, 0.5, 0.0); 
+  // axis X,Y,Z
+  glScalef(pos,pos,0.0);
+
 
   glBegin(GL_TRIANGLES);
   glVertex3f( 0.0f,  0.0f, 0.0f);
@@ -42,9 +45,13 @@ void DrawTriangle(void)
 
   glXSwapBuffers(dpy, win);
 
-  usleep(1000);
+  //usleep(1);
 
-  angle += 1;
+  angle += 2;
+  if(360 == angle) angle = 0;
+
+  pos += 0.005;
+  if(pos >= 1.0) pos = 0.0;
 }
 
 
