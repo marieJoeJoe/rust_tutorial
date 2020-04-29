@@ -10,6 +10,7 @@ then
 	gcc animate3Sided-Box.c -o  animate3Sided-Box -lX11 -lGL -lGLU;
 	gcc creatingSphere.c -o creatingSphere -lX11 -lGL -lGLU -lm;
 	gcc plotingGraph.c -o plotingGraph -lX11 -lGL -lGLU -lm;
+	gcc animatingBlocks.c -o animatingBlocks -lX11 -lGL -lGLU -lm;
 
 elif [ $arg1 == "clean" ]
 then
@@ -19,6 +20,7 @@ then
 	rm animate3Sided-Box;
 	rm creatingSphere;
 	rm plotingGraph;
+	rm animatingBlocks;
 else
 	echo "build.sh param err!"
 fi

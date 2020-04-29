@@ -24,8 +24,6 @@ void DrawTriangle(void)
   static int angle;
   static float pos = 0.0;
 
-  float angle1, angle2;
-  float xx, yy, zz, xxp, yyp, zzp;
   static int isortho = 0;
 
   XGetWindowAttributes(dpy, win, &winattr);
@@ -33,57 +31,65 @@ void DrawTriangle(void)
 
   if(0 == isortho)
   {
-    glOrtho(-7.0, 7.0, -3.0, 3.0, -1.0, 1.0);
+    glOrtho(-10.0, 10.0, -10.0, 10.0, -10.0, 10.0);
     isortho = 1; 
   }
 
 
   glClearColor(.8f, .8f, .8f, 0.0f);//background color R G B
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-  //glColor3f(0.0f, 0.9f, 1.0f);//triangle color RGB
 
   glPushMatrix();
-  //glRotatef(angle, 1.0, 0.3, 0.0); 
-  glRotatef(45, 1.0, 1.0, 0.0); 
-  // axis X,Y,Z
-  //glScalef(pos,pos,0.0);
-
-  glBegin(GL_QUAD_STRIP);
-
-  for(xx = -3.1416*2; xx <= 3.1416*2; xx += 0.01)
-  {
-    yy = sin(xx);
-    glColor3f(xx*xx, yy*yy, 1.0f);//triangle color RGB
-    glVertex3f( xx, yy, zz);
-    glVertex3f( xx, yy+0.1, zz);
-  }
-  glEnd();
-
+  glRotatef(20, 1.0, 1.0, 0.0);
+  //glPopMatrix();
+  //glRotatef(20, 0.5, -1.0, 0.0);
 
   glBegin(GL_LINES);
+
     glColor3f(0.0f, 0.0f, 0.0f);//triangle color RGB
-    glVertex3f( -7.0,  0.0,  0.0);
-    glVertex3f( 7.0, 0.0, 0.0);
 
-    glVertex3f( 0.0, -1.0,  0.0);
-    glVertex3f( 0.0, 1.0, 0.0);
+    glVertex3f( -10.0,  0.0,  0.0);
+    glVertex3f( 10.0,  0.0,  0.0);
 
-    glVertex3f( 0.0,0.0, -1.0);
-    glVertex3f( 0.0,0.0, 1.0);
+    glVertex3f( 0.0,  10.0,  0.0);
+    glVertex3f( 0.0,  -10.0,  0.0);
+
+    glVertex3f( 0.0,  0.0,  10.0);
+    glVertex3f( 0.0,  0.0,  -10.0);
 
   glEnd();
+
+
+  glBegin(GL_TRIANGLES);
+
+    //glColor3f(0.0f, 0.0f, 0.0f);//triangle color RGB
+
+    glVertex3f( 10.0,  0.0,  0.0);
+    glVertex3f( 9.5,  0.2,  0.0);
+    glVertex3f( 9.5,  -0.2,  0.0);
+
+    glVertex3f( 0.0,  10.0,  0.0);
+    glVertex3f( 0.2,  9.5,  0.0);
+    glVertex3f( -0.2, 9.5,  0.0);
+
+    glVertex3f( 0.0,  0.0,  10.0);
+    glVertex3f( 0.0,  0.2,  9.5);
+    glVertex3f( 0.0,  -0.2,  9.5);
+
+   glEnd();
 
   glPopMatrix();
 
   glXSwapBuffers(dpy, win);
 
-  //usleep(1);
+  usleep(5000);
 
-  angle += 2;
-  if(360 == angle) angle = 0;
-
+  angle += 1;
+  if( 360 == angle ) angle = 0;
   pos += 0.005;
-  if(pos >= 1.0) pos = 0.0;
+  if( pos >= 1.0 ) pos = 0.0;
+
+
 }
 
 
