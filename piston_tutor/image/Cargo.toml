@@ -1,0 +1,10 @@
+[package]
+name = "image"
+version = "0.1.0"
+authors = ["marie <marieqoeqoe@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+piston_window = "0.109.0"
+find_folder = "0.3.0"
+
